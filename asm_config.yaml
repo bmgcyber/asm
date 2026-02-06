@@ -1,0 +1,61 @@
+# ASM Configuration File
+
+# Tool paths (use full path or just binary name if on PATH)
+tools:
+  subfinder: subfinder
+  amass: amass
+  nmap: nmap
+  httpx: httpx
+  nuclei: nuclei
+  cloud_enum: cloud_enum
+
+# Default scan settings
+scan:
+  # Port specification for nmap
+  ports: "21-23,25,53,80,110,111,135,139,143,443,445,993,995,1723,3306,3389,5432,5900,8080,8443,8888,9090"
+  # Nuclei severity filter (comma-separated: info,low,medium,high,critical)
+  severity: "low,medium,high,critical"
+  # Default timeout per tool in seconds
+  timeout: 600
+  # httpx thread count
+  httpx_threads: 50
+  # nuclei rate limit (requests/sec)
+  nuclei_rate_limit: 150
+
+# Data directory (relative to script or absolute)
+data_dir: data
+
+# Cloud asset discovery settings
+cloud:
+  # Enable cloud asset probing via HTTP
+  http_probe: true
+  # S3 bucket keyword permutations (appended/prepended to domain keywords)
+  permutations:
+    - ""
+    - "-dev"
+    - "-staging"
+    - "-prod"
+    - "-backup"
+    - "-assets"
+    - "-static"
+    - "-media"
+    - "-logs"
+    - "-data"
+  # AWS region for boto3 (if available)
+  aws_region: us-east-1
+
+# Report settings
+report:
+  # Default format
+  format: xlsx
+  # Highlight TLS certs expiring within this many days
+  tls_expiry_warn_days: 30
+  # Risky ports to highlight in red
+  risky_ports:
+    - 21    # FTP
+    - 23    # Telnet
+    - 3389  # RDP
+    - 5900  # VNC
+    - 445   # SMB
+    - 135   # MSRPC
+    - 139   # NetBIOS

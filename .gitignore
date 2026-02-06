@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+/bin/
+/lib/
+/data/
+.claude/
+*.swp
+*~
+.DS_Store
